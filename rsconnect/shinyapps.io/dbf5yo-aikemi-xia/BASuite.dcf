@@ -1,0 +1,12 @@
+name: BASuite
+title: BASuite
+username: dbf5yo-aikemi-xia
+account: dbf5yo-aikemi-xia
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13866416
+bundleId: 9728085
+url: https://dbf5yo-aikemi-xia.shinyapps.io/BASuite/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,17 +1,32 @@
 Package: BASuite
-Title: An Amazing Shiny App
+Title: BASuite
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "firstname",
-           family = "lastname",
-           role = c("aut", "cre"),
-           email = "your@email.com")
-Description: What the package does (one paragraph).
-License: What license is it under?
+    person("Donghui", "Xia", , "dhxia@snut.edu.cn", role = c("aut", "cre"))
+Description: A tool suite for Bioinformatics Analysis.
+License: MIT + file LICENSE
+URL: https://github.com/CMSNUT/BASuite.git
+BugReports: https://github.com/CMSNUT/BASuite.git/issues
 Imports: 
+    autoReg,
+    compareGroups,
     config,
+    DT,
     golem,
-    shiny
+    googlesheets4,
+    haven,
+    htmltools,
+    moonBook,
+    rrtable,
+    shiny,
+    shinyBS,
+    shinydashboard,
+    shinydashboardPlus,
+    shinyhelper,
+    shinyjs,
+    shinyWidgets,
+    survival,
+    survminer
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
