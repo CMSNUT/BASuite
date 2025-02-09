@@ -1,4 +1,4 @@
-<img src='cglogo.png' align="right" height="139" />
+<img src='www/cglogo.png' align="right" height="139" />
 
 -----
 
@@ -60,43 +60,45 @@
 
 <details>
 <summary><format style="font-size:12pt"><strong>Descriptives of entire cohort</strong></format></summary>
-<img src="./www/examples/example1.png" width=80% /img>
+<img src="www/examples/example1.png" width=80% /img>
 </details>
 
 <details>
 <summary><format style="font-size:12pt"><strong>Descriptive by groups</strong></format></summary>
-<img src="./www/examples/example2.png" width=80% /img>
+<img src="www/examples/example2.png" width=80% /img>
 </details>
 
 <details>
 <summary><format style="font-size:12pt"><strong>Descriptive by groups customized</strong></format></summary>
-<img src="./www/examples/example3.png" width=80% /img>
+<img src="www/examples/example3.png" width=80% /img>
 </details>
 
 <details>
 <summary><format style="font-size:12pt"><strong>Cohort studies: Hazard Ratios</strong></format></summary>
-<img src="./www/examples/example4.png" width=80% /img>
+<img src="www/examples/example4.png" width=80% /img>
 </details>
 
 <details>
 <summary><format style="font-size:12pt"><strong>Stratified table</strong></format></summary>
-<img src="./www/examples/example5.png" width=80% /img>
+<img src="www/examples/example5.png" width=80% /img>
 </details>
 
 <details>
 <summary><format style="font-size:12pt"><strong>Plots</strong></format></summary>
 <table width=80%>
 <tr>
-<td> <img src="./www/examples/example6.png" width=100% /img> </td>
-<td> <img src="./www/examples/example7.png" width=100% /img> </td>
+<td> <img src="www/examples/example6.png" width=100% /img> </td>
+<td> <img src="www/examples/example7.png" width=100% /img> </td>
 </tr>
 </table>
 </details>
 
 <details>
 <summary><format style="font-size:12pt"><strong>Genetic variables (SNPs)</strong></format></summary>
-<img src="./www/examples/example8.png" width=60% /img>
+<img src="www/examples/example8.png" width=60% /img>
 </details>
+
+
 
 
 -----

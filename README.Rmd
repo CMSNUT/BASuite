@@ -16,6 +16,7 @@ output: github_document
 # `{BASuite}`
 
 <!-- badges: start -->
+[![Codecov test coverage](https://codecov.io/gh/CMSNUT/BASuite/graph/badge.svg)](https://app.codecov.io/gh/CMSNUT/BASuite)
 <!-- badges: end -->
 
 ## Installation

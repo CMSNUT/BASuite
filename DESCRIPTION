@@ -7,16 +7,24 @@ Description: A tool suite for Bioinformatics Analysis.
 License: MIT + file LICENSE
 URL: https://github.com/CMSNUT/BASuite.git
 BugReports: https://github.com/CMSNUT/BASuite.git/issues
+Depends: 
+    R (>= 3.5)
 Imports: 
     autoReg,
+    caret,
+    colourpicker,
     compareGroups,
     config,
     DT,
+    flextable,
     golem,
     googlesheets4,
-    haven,
     htmltools,
+    kableExtra,
+    knitr,
     moonBook,
+    officer,
+    readxl,
     rrtable,
     shiny,
     shinyBS,
@@ -25,8 +33,16 @@ Imports:
     shinyhelper,
     shinyjs,
     shinyWidgets,
+    stringr,
     survival,
-    survminer
+    survminer,
+    tidyverse,
+    tools,
+    writexl
+Suggests: 
+    rmarkdown
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2

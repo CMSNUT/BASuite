@@ -5,7 +5,6 @@
 #' @import compareGroups
 #' @import DT
 #' @import googlesheets4
-#' @import haven
 #' @import shiny
 #' @import shinyBS
 #' @import shinydashboard
@@ -15,10 +14,25 @@
 #' @import shinyWidgets
 #' @import survival
 #' @import survminer
+#' @import officer
 #' @import autoReg
 #' @import moonBook
 #' @import rrtable
-
+#' @import flextable
+#' @import readxl
+#' @import writexl
+#' @import tidyverse
+#' @import kableExtra
+#' @import knitr
+#' @import stringr
+#' @import caret
+#' @import colourpicker
+#' @import rms
+#' @import glmnet
+#' @import timeROC
+#' @import ggDCA
+#' @import forestmodel
+#'
 #' @noRd
 app_ui <- function(request) {
   tagList(
@@ -50,10 +64,12 @@ app_ui <- function(request) {
 
       HTML("<link href='https://fonts.googleapis.com/css?family=Knewave' rel='stylesheet'>"),
 
-      titlePanel(HTML("<p style='margin-top:-20px'></p>"), windowTitle="compareGroups | Explore and Summarise Epidemiological Data in R"),
+      titlePanel(HTML("<p style='margin-top:-20px'></p>"), windowTitle=" | Bioinformatics Analysis Tools Suite"),
+
       dashboardPage(
         preloader=NULL,
         skin="blue",
+        scrollToTop = TRUE,
 
         ## header ----
         header = dashboardHeader(
@@ -70,28 +86,6 @@ app_ui <- function(request) {
           # titleWidth = 300,
           fixed = FALSE,
           #enable_rightsidebar = TRUE,
-          controlbarIcon = shiny::icon("gears"),
-          # leftUi=tagList(
-          #   # hidden(
-          #     div(
-          #       id="dropdownData",
-          #         tags$table(
-          #          tags$tr(
-          #            tags$td(style="padding-right:5px",
-          #                    dropdownButton(inputId="valuextoptionsaction", circle=FALSE, status="primary", label=HTML("<format style='font-size:13pt'>View options</format>"),
-          #                                   checkboxInput("showlabels","Show variable labels",TRUE),
-          #                                   sliderInput("valueextsize", "Resize (%):", min=10, max=300, value=100, step=10),
-          #                                   sliderInput("valueextwidth", "Width (%)", value=100, min=50, max=200)
-          #                    )
-          #            ),
-          #            tags$td(style="padding-right:5px",
-          #                    bsButton("udpateSelection",HTML("<format style='font-size:13pt'>Update Selection</format>"),style="primary")
-          #            )
-          #          )
-          #         )
-          #     )
-          #   # ),
-          # ),
           userOutput("github")
         ),
 
@@ -106,15 +100,50 @@ app_ui <- function(request) {
               tabName="Home",
               icon=icon("home")
             ),
+            # div(style="border: 1px solid white;height:0px; margin-top:-3px; margin-bottom:0px"),
 
             ### Data ----
-            div(
-              id="DataHeader",
-              style="padding-top:5px;",
-              uiOutput("DataHeaderText"),
-              div(style="border: 1px solid white;height:0px; margin-top:-3px; margin-bottom:0px")
+
+            menuItem(
+              HTML("<format style='font-size:13pt'>Data Preparation</format>"),
+              tabName="Data-Preparation",
+              icon=icon("database")
+            ),
+            # div(style="border: 1px solid white;height:0px; margin-top:-3px; margin-bottom:0px"),
+
+            ### Table ----
+            menuItem(
+              HTML("<format style='font-size:13pt'>Descriptive Table</format>"),
+              tabName="Descriptive-Table",
+              icon=icon("table")
+            ),
+            # div(style="border: 1px solid white;height:0px; margin-top:-3px; margin-bottom:0px"),
+
+            ### KMPlot ----
+            menuItem(
+              HTML("<format style='font-size:13pt'>Kaplan-Meier Curves</format>"),
+              tabName="KM-Plot",
+              icon=icon("chart-gantt")
+            ),
+            # div(style="border: 1px solid white;height:0px; margin-top:-3px; margin-bottom:0px"),
+
+            ### CoxReg ----
+            menuItem(
+              HTML("<format style='font-size:13pt'>Cox's Regression</format>"),
+              tabName="Cox-Reg",
+              icon=icon("bars-progress")
             )
-            #,
+            # ,
+            # div(style="border: 1px solid white;height:0px; margin-top:-3px; margin-bottom:0px"),
+
+            ### LogiReg ----
+            # menuItem(
+            #   HTML("<format style='font-size:13pt'>Logistic Regression</format>"),
+            #   tabName="Logi-Reg",
+            #   icon=icon("xmarks-lines")
+            # )
+            # ,
+            # div(style="border: 1px solid white;height:0px; margin-top:-3px; margin-bottom:0px")
           )
         ),
 
@@ -129,12 +158,52 @@ app_ui <- function(request) {
             )
           ),
 
-          ### Home Panel ####
-          div(id="homePanel",
+
+          tabItems(
+            ### Home Panel ####
+            tabItem(
+              "Home",
+              # div(id="homePanel",
               HTML("<p style='text-align: center;><format color:#357CA5; font-family: Knewave; font-size: 40pt; font-style: normal; font-variant: normal;'>BASuite</format></p>"),
-              HTML("<h3 style='text-align: center;><format style='text-align: center'><i><strong><code>B</code>ioinformatics <code>A</code>nalysis Tools <code>Suite</code> with R Language</strong></format></i></h3>"),
-              includeMarkdown("/www/home.md")
+              HTML("<h3 style='text-align: center;><format style='text-align: center'><i><strong><code>B</code>ioinformatics <code>A</code>nalysis Tools <code>Suite</code> in R Language</strong></format></i></h3>"),
+              includeMarkdown("./md/home.md")
+              # )
+            ),
+
+            ### Data-Preparation Panel ####
+            tabItem(
+              "Data-Preparation",
+              mod_data_preparation_ui("data")
+            ),
+
+            ### Descriptive-Table Panel ####
+            tabItem(
+              "Descriptive-Table",
+              mod_descriptive_table_ui("tableone")
+            ),
+
+            ### KM-Plot Panel ####
+            tabItem(
+              "KM-Plot",
+              mod_km_plot_ui("km")
+            ),
+
+            ### Cox-Reg Panel ####
+            tabItem(
+              "Cox-Reg",
+              mod_cox_reg_ui("cox")
+            )
+            # ,
+
+            ### Logi-Reg Panel ####
+            # tabItem(
+            #   "Logi-Reg",
+            #   mod_logi_reg_ui("logi")
+            # )
+
+
           )
+
         )
 
       )
